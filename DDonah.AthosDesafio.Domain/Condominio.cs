@@ -13,7 +13,7 @@ namespace DDonah.AthosDesafio.Domain
         public int Id { get; set; }
         public string Nome { get; set; }
         public int AdministradoraId { get; set; }
-        public int ResponsavelId { get; set; }
+        public int? ResponsavelId { get; set; }
 
         public virtual Administradora Administradora { get; set; }
         public virtual Usuario Responsavel { get; set; }

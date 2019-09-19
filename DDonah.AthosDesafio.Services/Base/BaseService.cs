@@ -34,7 +34,7 @@ namespace DDonah.AthosDesafio.Services.Base
             _db.SaveChanges();
         }
 
-        public IEnumerable<T> GetAll()
+        public virtual IEnumerable<T> GetAll()
         {
             return _dbSet.ToList();
         }

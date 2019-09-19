@@ -64,7 +64,6 @@ namespace DDonah.AthosDesafio.Infra.Generated
                 entity.HasOne(d => d.Responsavel)
                     .WithMany(p => p.Condominio)
                     .HasForeignKey(d => d.ResponsavelId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Condominio_Usuario");
             });
 

@@ -13,6 +13,15 @@ namespace DDonah.AthosDesafio.WebApi.Mappings
         public MappingProfile()
         {
             CreateMap<Administradora, AdministradoraViewModel>().ReverseMap();
+            CreateMapCondominio();
+        }
+
+        private void CreateMapCondominio()
+        {
+            CreateMap<Condominio, CondominioViewModel>()
+                .ForMember(dest => dest.ResponsavelNome, opt => opt.MapFrom(x => x.Responsavel.Nome))
+                .ForMember(dest => dest.ResponsavelCargo, opt => opt.MapFrom(x => x.Responsavel.Tipo))
+                .ForMember(dest => dest.ResponsavelEmail, opt => opt.MapFrom(x => x.Responsavel.Email));
         }
     }
 }
