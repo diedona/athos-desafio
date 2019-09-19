@@ -11,3 +11,12 @@ Este projeto contêm as classes Plain Old Csharp Object (POCO) que representam o
 
 ### Infra
 Configuração das classes dispostas no Domain. Contêm o EF Core e o nosso DBContext.
+
+### Services
+Utiliza o DbContext da Infra para manipular o acesso ao banco de dados. Também é responsável pelas regras de negócio da aplicação.
+
+### WebApi
+Nosso projeto de BackEnd, usando WEB API, usando alguns conceitos:
+
+#### Auto Mapper
+#### Dependency Injection
