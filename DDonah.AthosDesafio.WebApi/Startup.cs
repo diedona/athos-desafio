@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using DDonah.AthosDesafio.Infra;
 using DDonah.AthosDesafio.Infra.Generated;
 using DDonah.AthosDesafio.Services;
 using DDonah.AthosDesafio.WebApi.Config;
+using DDonah.AthosDesafio.WebApi.Mappings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -34,6 +36,7 @@ namespace DDonah.AthosDesafio.WebApi
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             ConfigureDb(services);
             ConfigureScopedServices(services);
+            ConfigureAutoMapper(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,6 +64,17 @@ namespace DDonah.AthosDesafio.WebApi
         private void ConfigureScopedServices(IServiceCollection services)
         {
             services.AddScoped<IAdministradoraService, AdministradoraService>();
+        }
+
+        private void ConfigureAutoMapper(IServiceCollection services)
+        {
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
         }
     }
 }
