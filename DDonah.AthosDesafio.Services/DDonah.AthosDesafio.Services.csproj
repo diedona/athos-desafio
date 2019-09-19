@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\DDonah.AthosDesafio.Domain\DDonah.AthosDesafio.Domain.csproj" />
+    <ProjectReference Include="..\DDonah.AthosDesafio.Infra\DDonah.AthosDesafio.Infra.csproj" />
+  </ItemGroup>
+
+</Project>
