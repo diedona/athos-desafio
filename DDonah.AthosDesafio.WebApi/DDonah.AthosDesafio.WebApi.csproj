@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\DDonah.AthosDesafio.Domain\DDonah.AthosDesafio.Domain.csproj" />
+    <ProjectReference Include="..\DDonah.AthosDesafio.Domain\DDonah.AthosDesafio.Domain.csproj" />
     <ProjectReference Include="..\DDonah.AthosDesafio.Infra\DDonah.AthosDesafio.Infra.csproj" />
     <ProjectReference Include="..\DDonah.AthosDesafio.Services\DDonah.AthosDesafio.Services.csproj" />
   </ItemGroup>

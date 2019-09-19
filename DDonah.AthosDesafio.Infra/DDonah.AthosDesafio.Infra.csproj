@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\DDonah.AthosDesafio.Domain\DDonah.AthosDesafio.Domain.csproj" />
+    <ProjectReference Include="..\DDonah.AthosDesafio.Domain\DDonah.AthosDesafio.Domain.csproj" />
   </ItemGroup>
 
 </Project>
