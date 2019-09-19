@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.779
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDonah.AthosDesafio.Domain", "..\DDonah.AthosDesafio.Domain\DDonah.AthosDesafio.Domain.csproj", "{94BFD5F6-2DF4-46B0-9244-02B7A1BEF314}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDonah.AthosDesafio.Domain", "DDonah.AthosDesafio.Domain\DDonah.AthosDesafio.Domain.csproj", "{94BFD5F6-2DF4-46B0-9244-02B7A1BEF314}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDonah.AthosDesafio.Infra", "DDonah.AthosDesafio.Infra\DDonah.AthosDesafio.Infra.csproj", "{64FC2B3C-FFAF-4D7A-87C6-B8E150F6B52C}"
 EndProject
