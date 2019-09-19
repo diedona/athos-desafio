@@ -1,4 +1,4 @@
-# Bem vindo/a!
+# Oi pessoa!
 Esse é um projeto de teste técnico, usando BackEnd em ASP.NET Core 2.2 (as of 2019/09) e Angular8 (as of 2019/09).
 
 ## Arquitetura
@@ -16,7 +16,7 @@ Configuração das classes dispostas no Domain. Contêm o EF Core e o nosso DBCo
 Utiliza o DbContext da Infra para manipular o acesso ao banco de dados. Também é responsável pelas regras de negócio da aplicação.
 
 ### WebApi
-Nosso projeto de BackEnd, usando WEB API, usando alguns conceitos:
+Nosso projeto de BackEnd, powered by ASP NET CORE WEB API, usando alguns conceitos:
 
-#### Auto Mapper
-#### Dependency Injection
+* Auto Mapper
+* Dependency Injection (default do .NET Core)
