@@ -2,7 +2,7 @@
 using DDonah.AthosDesafio.Infra.Generated;
 using Microsoft.EntityFrameworkCore;
 
-namespace DDonah.AthosDesafio.Test
+namespace DDonah.AthosDesafio.Test.Db
 {
     /// <summary>
     /// https://gunnarpeipman.com/aspnet-core-ef-inmemory/

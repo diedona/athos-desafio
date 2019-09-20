@@ -1,6 +1,7 @@
 ﻿using DDonah.AthosDesafio.Domain;
 using DDonah.AthosDesafio.Infra.Generated;
 using DDonah.AthosDesafio.Services;
+using DDonah.AthosDesafio.Test.Db;
 using NUnit.Framework;
 using System;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace DDonah.AthosDesafio.Test
         {
             _db = DbMock.GetContextWithData();
         }
+
         [Test]
         public void Condominio_NaoDeveInserir_TipoResponsavelInvalido()
         {
