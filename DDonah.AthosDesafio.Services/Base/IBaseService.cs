@@ -10,5 +10,6 @@ namespace DDonah.AthosDesafio.Services.Base
         void Delete(int id);
         IEnumerable<T> GetAll();
         T Get(int id);
+        void Update(T entity);
     }
 }

@@ -1,5 +1,4 @@
-﻿using DDonah.AthosDesafio.Infra;
-using DDonah.AthosDesafio.Infra.Generated;
+﻿using DDonah.AthosDesafio.Infra.Generated;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +18,12 @@ namespace DDonah.AthosDesafio.Services.Base
         public virtual void Save(T entity)
         {
             _dbSet.Add(entity);
+            _db.SaveChanges();
+        }
+
+        public virtual void Update(T entity)
+        {
+            _dbSet.Update(entity);
             _db.SaveChanges();
         }
 
