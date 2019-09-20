@@ -12,5 +12,7 @@ namespace DDonah.AthosDesafio.WebApi.ViewModel
         public string Email { get; set; }
         public int CondominioId { get; set; }
         public string Tipo { get; set; }
+
+        public string CondominioNome { get; set; }
     }
 }

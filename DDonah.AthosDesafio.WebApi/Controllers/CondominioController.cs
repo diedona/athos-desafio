@@ -52,7 +52,8 @@ namespace DDonah.AthosDesafio.WebApi.Controllers
             try
             {
                 _condominioService.Save(model);
-                return NoContent();
+                vm = _mapper.Map<CondominioViewModel>(model);
+                return Ok(vm);
             }
             catch (Exception ex)
             {

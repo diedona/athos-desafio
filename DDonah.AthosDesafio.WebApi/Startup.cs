@@ -67,6 +67,7 @@ namespace DDonah.AthosDesafio.WebApi
         {
             services.AddScoped<IAdministradoraService, AdministradoraService>();
             services.AddScoped<ICondominioService, CondominioService>();
+            services.AddScoped<IUsuarioService, UsuarioService>();
         }
 
         private void ConfigureAutoMapper(IServiceCollection services)
