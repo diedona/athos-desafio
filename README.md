@@ -20,3 +20,7 @@ Nosso projeto de BackEnd, powered by ASP NET CORE WEB API, usando alguns conceit
 
 * Auto Mapper
 * Dependency Injection (default do .NET Core)
+* ViewModel (em conjunto com o Mapper)
+
+### Test
+Usando o nUnit para criar alguns testes de validação na camada de serviço, usando o InMemoryDatabase do EF Core.
