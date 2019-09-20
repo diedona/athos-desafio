@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDonah.AthosDesafio.Domain"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDonah.AthosDesafio.Infra", "DDonah.AthosDesafio.Infra\DDonah.AthosDesafio.Infra.csproj", "{64FC2B3C-FFAF-4D7A-87C6-B8E150F6B52C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDonah.AthosDesafio.Services", "DDonah.AthosDesafio.Services\DDonah.AthosDesafio.Services.csproj", "{B50F015E-5536-47C2-BB9F-DBB2C7400F63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDonah.AthosDesafio.Services", "DDonah.AthosDesafio.Services\DDonah.AthosDesafio.Services.csproj", "{B50F015E-5536-47C2-BB9F-DBB2C7400F63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDonah.AthosDesafio.WebApi", "DDonah.AthosDesafio.WebApi\DDonah.AthosDesafio.WebApi.csproj", "{8D4653C2-3968-4438-9A1B-26376AB04F0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDonah.AthosDesafio.WebApi", "DDonah.AthosDesafio.WebApi\DDonah.AthosDesafio.WebApi.csproj", "{8D4653C2-3968-4438-9A1B-26376AB04F0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDonah.AthosDesafio.Test", "DDonah.AthosDesafio.Test\DDonah.AthosDesafio.Test.csproj", "{C169E07B-B58E-4FA0-9E71-196427A9D44E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{8D4653C2-3968-4438-9A1B-26376AB04F0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D4653C2-3968-4438-9A1B-26376AB04F0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D4653C2-3968-4438-9A1B-26376AB04F0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C169E07B-B58E-4FA0-9E71-196427A9D44E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C169E07B-B58E-4FA0-9E71-196427A9D44E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C169E07B-B58E-4FA0-9E71-196427A9D44E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C169E07B-B58E-4FA0-9E71-196427A9D44E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
