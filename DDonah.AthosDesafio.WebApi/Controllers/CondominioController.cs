@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using DDonah.AthosDesafio.Domain;
 using DDonah.AthosDesafio.Services;
 using DDonah.AthosDesafio.WebApi.Controllers.Base;
 using DDonah.AthosDesafio.WebApi.ViewModel;
@@ -28,6 +29,22 @@ namespace DDonah.AthosDesafio.WebApi.Controllers
             var condominios = _condominioService.GetAll();
             var vm = _mapper.Map<IEnumerable<CondominioViewModel>>(condominios);
             return Ok(vm);
+        }
+
+        [HttpPut]
+        public IActionResult Put(CondominioViewModel vm)
+        {
+            var model = _mapper.Map<Condominio>(vm);
+
+            try
+            {
+                _condominioService.Update(model);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

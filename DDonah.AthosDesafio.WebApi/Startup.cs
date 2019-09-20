@@ -34,6 +34,7 @@ namespace DDonah.AthosDesafio.WebApi
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            services.AddCors();
             ConfigureDb(services);
             ConfigureScopedServices(services);
             ConfigureAutoMapper(services);
@@ -54,6 +55,7 @@ namespace DDonah.AthosDesafio.WebApi
 
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseCors(option => option.AllowAnyOrigin());
         }
 
         private void ConfigureDb(IServiceCollection services)

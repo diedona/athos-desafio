@@ -23,17 +23,27 @@ namespace DDonah.AthosDesafio.Services
 
         public override void Save(Condominio entity)
         {
+            this.checkResponsavelTipoThrowException(entity);
+            base.Save(entity);
+        }
+
+        public override void Update(Condominio entity)
+        {
+            this.checkResponsavelTipoThrowException(entity);
+            base.Update(entity);
+        }
+
+        private void checkResponsavelTipoThrowException(Condominio entity)
+        {
             if (entity.ResponsavelId.HasValue)
             {
-                // Responsável só pode ser ((Zelador / Sindico))
+                // Responsável só pode ser (( Zelador / Sindico ))
                 var responsavel = _db.Usuario.Find(entity.ResponsavelId);
                 if (!this.tiposDeResponsavelValidos.Contains(responsavel.Tipo))
                 {
                     throw new ArgumentException("Tipo de responsável inválido");
                 }
             }
-
-            base.Save(entity);
         }
     }
 }
