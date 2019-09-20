@@ -53,5 +53,36 @@ namespace DDonah.AthosDesafio.WebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPut]
+        public IActionResult Put(UsuarioViewModel vm)
+        {
+            var model = _mapper.Map<Usuario>(vm);
+
+            try
+            {
+                _usuarioService.Update(model);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public IActionResult Delete(int id)
+        {
+            if (!_usuarioService.Exists(x => x.Id == id))
+            {
+                return NotFound();
+            }
+            else
+            {
+                _usuarioService.Delete(id);
+                return NoContent();
+            }
+        }
     }
 }
