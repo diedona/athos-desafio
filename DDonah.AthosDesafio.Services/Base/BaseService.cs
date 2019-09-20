@@ -1,7 +1,9 @@
 ﻿using DDonah.AthosDesafio.Infra.Generated;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace DDonah.AthosDesafio.Services.Base
 {
@@ -53,6 +55,11 @@ namespace DDonah.AthosDesafio.Services.Base
         public virtual T Get(int id)
         {
             return _dbSet.Find(id);
+        }
+
+        public bool Exists(Expression<Func<T, bool>> condition)
+        {
+            return _dbSet.Any(condition);
         }
     }
 }

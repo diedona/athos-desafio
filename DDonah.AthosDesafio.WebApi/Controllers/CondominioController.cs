@@ -44,6 +44,22 @@ namespace DDonah.AthosDesafio.WebApi.Controllers
             }
         }
 
+        [HttpPost]
+        public IActionResult Post(CondominioViewModel vm)
+        {
+            var model = _mapper.Map<Condominio>(vm);
+
+            try
+            {
+                _condominioService.Save(model);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPut]
         public IActionResult Put(CondominioViewModel vm)
         {
@@ -64,14 +80,13 @@ namespace DDonah.AthosDesafio.WebApi.Controllers
         [Route("{id}")]
         public IActionResult Delete(int id)
         {
-            var data = _condominioService.Get(id);
-            if (data == null)
+            if (!_condominioService.Exists(x => x.Id == id))
             {
                 return NotFound();
             }
             else
             {
-                _condominioService.Delete(data);
+                _condominioService.Delete(id);
                 return NoContent();
             }
         }
