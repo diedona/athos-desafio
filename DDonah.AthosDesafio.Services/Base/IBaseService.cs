@@ -8,6 +8,7 @@ namespace DDonah.AthosDesafio.Services.Base
     {
         void Save(T entity);
         void Delete(int id);
+        void Delete(T entity);
         IEnumerable<T> GetAll();
         T Get(int id);
         void Update(T entity);

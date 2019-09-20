@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using DDonah.AthosDesafio.Domain;
 using DDonah.AthosDesafio.Services;
 using DDonah.AthosDesafio.WebApi.Controllers.Base;
 using DDonah.AthosDesafio.WebApi.ViewModel;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace DDonah.AthosDesafio.WebApi.Controllers
 {
@@ -20,7 +17,7 @@ namespace DDonah.AthosDesafio.WebApi.Controllers
 
         public CondominioController(ICondominioService condominioService, IMapper mapper) : base(mapper)
         {
-            _condominioService = condominioService; 
+            _condominioService = condominioService;
         }
 
         [HttpGet]
@@ -36,7 +33,7 @@ namespace DDonah.AthosDesafio.WebApi.Controllers
         public IActionResult Get(int id)
         {
             var condominio = _condominioService.Get(id);
-            if(condominio == null)
+            if (condominio == null)
             {
                 return NotFound();
             }
@@ -60,6 +57,22 @@ namespace DDonah.AthosDesafio.WebApi.Controllers
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var data = _condominioService.Get(id);
+            if (data == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                _condominioService.Delete(data);
+                return NoContent();
             }
         }
     }

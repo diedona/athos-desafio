@@ -39,6 +39,12 @@ namespace DDonah.AthosDesafio.Services.Base
             _db.SaveChanges();
         }
 
+        public virtual void Delete(T entity)
+        {
+            _dbSet.Remove(entity);
+            _db.SaveChanges();
+        }
+
         public virtual IEnumerable<T> GetAll()
         {
             return _dbSet.ToList();
