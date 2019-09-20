@@ -31,6 +31,22 @@ namespace DDonah.AthosDesafio.WebApi.Controllers
             return Ok(vm);
         }
 
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult Get(int id)
+        {
+            var condominio = _condominioService.Get(id);
+            if(condominio == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                var viewmodel = _mapper.Map<CondominioViewModel>(condominio);
+                return Ok(viewmodel);
+            }
+        }
+
         [HttpPut]
         public IActionResult Put(CondominioViewModel vm)
         {

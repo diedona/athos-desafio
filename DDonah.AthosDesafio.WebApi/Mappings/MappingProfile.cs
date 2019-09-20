@@ -19,6 +19,7 @@ namespace DDonah.AthosDesafio.WebApi.Mappings
         private void CreateMapCondominio()
         {
             CreateMap<Condominio, CondominioViewModel>()
+                .ForMember(dest => dest.AdministradoraNome, opt => opt.MapFrom(x => x.Administradora.Nome))
                 .ForMember(dest => dest.ResponsavelNome, opt => opt.MapFrom(x => x.Responsavel.Nome))
                 .ForMember(dest => dest.ResponsavelCargo, opt => opt.MapFrom(x => x.Responsavel.Tipo))
                 .ForMember(dest => dest.ResponsavelEmail, opt => opt.MapFrom(x => x.Responsavel.Email));

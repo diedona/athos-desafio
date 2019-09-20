@@ -18,7 +18,16 @@ namespace DDonah.AthosDesafio.Services
         {
             return _db.Condominio
                 .Include(x => x.Responsavel)
+                .Include(x => x.Administradora)
                 .ToList();
+        }
+
+        public override Condominio Get(int id)
+        {
+            return _db.Condominio
+                .Include(x => x.Responsavel)
+                .Include(x => x.Administradora)
+                .FirstOrDefault(x => x.Id == id);
         }
 
         public override void Save(Condominio entity)

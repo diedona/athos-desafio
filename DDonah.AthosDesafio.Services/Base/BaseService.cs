@@ -44,7 +44,7 @@ namespace DDonah.AthosDesafio.Services.Base
             return _dbSet.ToList();
         }
 
-        public T Get(int id)
+        public virtual T Get(int id)
         {
             return _dbSet.Find(id);
         }
