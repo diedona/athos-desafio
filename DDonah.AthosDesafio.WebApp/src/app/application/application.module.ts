@@ -6,10 +6,17 @@ import { ApplicationComponent } from './application.component';
 import { HomeComponent } from './home/home.component';
 import { MaterialModule } from '../shared/material.module';
 import { LayoutModule } from '../layout/layout.module';
+import { UsuarioComponent } from './usuarios/usuario/usuario.component';
+import { UsuarioListComponent } from './usuarios/usuario-list/usuario-list.component';
 
 
 @NgModule({
-  declarations: [ApplicationComponent, HomeComponent],
+  declarations: [
+    ApplicationComponent, 
+    HomeComponent, 
+    UsuarioComponent,
+    UsuarioListComponent
+  ],
   imports: [
     CommonModule,
     ApplicationRoutingModule,
