@@ -1,4 +1,3 @@
-import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -6,7 +5,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: 'app', loadChildren: () => import('./application/application.module').then(x => x.ApplicationModule)  },
   { path: '**', component: NotFoundComponent }
 ];
 
