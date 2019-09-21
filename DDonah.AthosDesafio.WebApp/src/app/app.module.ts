@@ -7,6 +7,7 @@ import { SharedModule } from './shared/shared.module';
 import { MaterialModule } from './shared/material.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     HttpClientModule,
+    FlexLayoutModule,
     AppRoutingModule,
     SharedModule,
     MaterialModule,

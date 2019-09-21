@@ -8,6 +8,7 @@ import { MaterialModule } from '../shared/material.module';
 import { LayoutModule } from '../layout/layout.module';
 import { UsuarioComponent } from './usuarios/usuario/usuario.component';
 import { UsuarioListComponent } from './usuarios/usuario-list/usuario-list.component';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { UsuarioListComponent } from './usuarios/usuario-list/usuario-list.compo
     CommonModule,
     ApplicationRoutingModule,
     MaterialModule,
+    FlexLayoutModule,
     LayoutModule
   ]
 })

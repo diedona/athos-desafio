@@ -10,6 +10,7 @@ export class UsuarioListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }
