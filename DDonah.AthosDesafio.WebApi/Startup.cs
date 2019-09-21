@@ -32,9 +32,10 @@ namespace DDonah.AthosDesafio.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-            services.AddCors();
+            ConfigureCors(services);
             ConfigureDb(services);
             ConfigureScopedServices(services);
             ConfigureAutoMapper(services);
@@ -54,8 +55,18 @@ namespace DDonah.AthosDesafio.WebApi
             }
 
             app.UseHttpsRedirection();
+            app.UseCors("AllCorsEnabled");
             app.UseMvc();
-            app.UseCors(option => option.AllowAnyOrigin());
+        }
+
+        private void ConfigureCors(IServiceCollection services)
+        {
+            services.AddCors(o => o.AddPolicy("AllCorsEnabled", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
         }
 
         private void ConfigureDb(IServiceCollection services)
