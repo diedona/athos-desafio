@@ -9,6 +9,13 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material';
+
+const snackBarDefaultOptions = {
+  duration: 3000,
+  verticalPosition: 'top',
+  horizontalPosition: 'end'
+};
 
 @NgModule({
   declarations: [
@@ -24,7 +31,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SharedModule,
     MaterialModule,
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: snackBarDefaultOptions}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

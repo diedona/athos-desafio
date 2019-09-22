@@ -34,6 +34,17 @@ namespace DDonah.AthosDesafio.Services
             base.Save(entity);
         }
 
+        public override void Delete(int id)
+        {
+            // CHECAR SE É RESPONSÁVEL DE ALGUM CONDOMINIO
+            if (_db.Condominio.Any(x => x.ResponsavelId.HasValue && x.ResponsavelId.Value == id))
+            {
+                throw new InvalidOperationException("Este usuário é responsável por um condomínio e não pode ser excluído!");
+            }
+
+            base.Delete(id);
+        }
+
         public string[] GetTiposDeUsuario()
         {
             return this.usuarioTipos;

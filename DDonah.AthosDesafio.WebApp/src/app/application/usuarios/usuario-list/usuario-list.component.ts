@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-usuario-list',
@@ -19,7 +20,8 @@ export class UsuarioListComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -63,7 +65,7 @@ export class UsuarioListComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.getUsuarios();
       }, err => {
-        alert('erro!');
+        this.snackBar.open(err.error, 'fechar', {panelClass: 'danger-snackbar'});
       })
   }
 }

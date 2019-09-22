@@ -78,10 +78,15 @@ namespace DDonah.AthosDesafio.WebApi.Controllers
             {
                 return NotFound();
             }
-            else
+
+            try
             {
                 _usuarioService.Delete(id);
                 return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
     }
