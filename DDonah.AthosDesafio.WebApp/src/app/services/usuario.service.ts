@@ -15,4 +15,20 @@ export class UsuarioService {
   getAll(): Observable<Array<any>> {
     return this.http.get<Array<any>>(`${environment.apiUrl}/usuario`);
   }
+
+  getByiId(id: number): Observable<any> {
+    return this.http.get<Array<any>>(`${environment.apiUrl}/usuario/${id}`);
+  }
+
+  save(usuario: any): Observable<void> {
+    return this.http.post<void>(`${environment.apiUrl}/usuario/`, usuario);
+  }
+
+  update(usuario: any): Observable<void> {
+    return this.http.put<void>(`${environment.apiUrl}/usuario/`, usuario);
+  }
+
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${environment.apiUrl}/usuario/${id}`);
+  }
 }

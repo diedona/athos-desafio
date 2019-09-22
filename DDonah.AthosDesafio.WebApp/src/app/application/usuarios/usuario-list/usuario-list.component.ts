@@ -23,11 +23,7 @@ export class UsuarioListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.usuarioService.getAll()
-      .pipe(takeUntil(this.takeSubject))
-      .subscribe(data => {
-        this.usuariosDs.data = data;
-      });
+    this.getUsuarios();
   }
 
   ngOnDestroy() {
@@ -43,4 +39,31 @@ export class UsuarioListComponent implements OnInit, OnDestroy {
     this.router.navigate([`app/usuarios/edit/${data.id}`]);
   }
 
+  onClickConfirmDelete(usuario: any): void {
+    if (confirm(`Deseja realmente deletar ${usuario.nome}?`)) {
+      this.deleteUsuario(usuario);
+    }
+  }
+
+  //
+  // PRIVATES
+  //
+
+  getUsuarios(): void {
+    this.usuarioService.getAll()
+      .pipe(takeUntil(this.takeSubject))
+      .subscribe(data => {
+        this.usuariosDs.data = data;
+      });
+  }
+
+  deleteUsuario(usuario: any): void {
+    this.usuarioService.delete(usuario.id)
+      .pipe(takeUntil(this.takeSubject))
+      .subscribe(() => {
+        this.getUsuarios();
+      }, err => {
+        alert('erro!');
+      })
+  }
 }

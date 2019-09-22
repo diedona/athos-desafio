@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CondominioService } from 'src/app/services/condominio.service';
 import { Subject } from 'rxjs';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { takeUntil } from 'rxjs/operators';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-usuario-editor',
@@ -19,13 +20,16 @@ export class UsuarioEditorComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private fb: FormBuilder,
-    private condominioService: CondominioService
+    private condominioService: CondominioService,
+    private usuarioService: UsuarioService
   ) { }
 
   ngOnInit() {
     this.frmUsuario = this.generateForm();
     this.getCondominios();
+    this.getCheckParams();
   }
 
   ngOnDestroy() {
@@ -44,12 +48,58 @@ export class UsuarioEditorComponent implements OnInit, OnDestroy {
     }
 
     const usuario = this.frmUsuario.getRawValue();
-    console.log(usuario);
+    if (!usuario.id) {
+      this.saveUser(usuario);
+    } else {
+      this.updateUser(usuario);
+    }
+  }
+
+  updateUser(usuario: any) {
+    this.usuarioService.update(usuario)
+      .pipe(takeUntil(this.takeSubject))
+      .subscribe(() => {
+        this.onClickGoBack();
+      }, (err) => {
+        alert('Erro!');
+      })
+  }
+
+  saveUser(usuario: any) {
+    this.usuarioService.save(usuario)
+      .pipe(takeUntil(this.takeSubject))
+      .subscribe(() => {
+        this.onClickGoBack();
+      }, (err) => {
+        alert('Erro!');
+      })
   }
 
   // 
   // privates
   //
+
+  getCheckParams(): void {
+    this.route.params
+      .pipe(takeUntil(this.takeSubject))
+      .subscribe(x => {
+        if (x.id) {
+          this.loadUsuario(+x.id);
+        }
+      })
+  }
+
+  loadUsuario(id: number): void {
+    this.usuarioService.getByiId(id)
+      .pipe(takeUntil(this.takeSubject))
+      .subscribe(usuario => {
+        this.fillFormData(usuario);
+      })
+  }
+
+  fillFormData(usuario: any): void {
+    this.frmUsuario.patchValue(usuario);
+  }
 
   getCondominios(): void {
     this.condominioService.getAll()
@@ -61,7 +111,7 @@ export class UsuarioEditorComponent implements OnInit, OnDestroy {
 
   generateForm(): FormGroup {
     return this.fb.group({
-      id: ['', []],
+      id: [{ value: '', disabled: true }, []],
       nome: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       condominioId: ['', Validators.required],
