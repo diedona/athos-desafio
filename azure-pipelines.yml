@@ -15,8 +15,10 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
-- bash: # script path or inline
-  workingDirectory: 'DDonah.AthosDesafio.WebApp'
+- task: Npm@1
+  inputs:
+    workingDir: 'DDonah.AthosDesafio.WebApp/src'
+  displayName: 'going to folder'
 
 - script: |
     npm install -g @angular/cli
