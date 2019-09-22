@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'notset'
+  apiUrl: 'http://athos-api.azurewebsites.net/api'
 };
