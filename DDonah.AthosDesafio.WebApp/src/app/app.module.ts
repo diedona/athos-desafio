@@ -8,6 +8,7 @@ import { MaterialModule } from './shared/material.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
   imports: [
     BrowserModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     FlexLayoutModule,
     AppRoutingModule,
     SharedModule,

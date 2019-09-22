@@ -12,25 +12,25 @@
             Criação de Usuário
         </mat-card-title>
 
-        <form class="m-t">
+        <form class="m-t" [formGroup]="frmUsuario" (submit)="onFormSubmit()">
 
             <div fxLayout="row" fxLayoutGap="10px grid">
                 <div fxFlex="10">
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Id</mat-label>
-                        <input matInput>
+                        <input matInput formControlName="id">
                     </mat-form-field>
                 </div>
                 <div fxFlex="30">
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Nome</mat-label>
-                        <input matInput>
+                        <input matInput formControlName="nome">
                     </mat-form-field>
                 </div>
                 <div fxFlex="60">
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>E-Mail</mat-label>
-                        <input matInput>
+                        <input matInput formControlName="email">
                     </mat-form-field>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                 <div fxFlex="40">
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Tipo</mat-label>
-                        <mat-select>
+                        <mat-select formControlName="tipo">
                             <mat-option value="">
                                 Selecione...
                             </mat-option>
@@ -61,24 +61,26 @@
                 <div fxFlex="60">
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Condomínio</mat-label>
-                        <mat-select>
-
+                        <mat-select formControlName="condominioId">
+                            <mat-option value="">
+                                Selecione
+                            </mat-option>
+                            <mat-option *ngFor="let condominio of condominios" [value]="condominio.id">
+                                {{condominio.nome}}
+                            </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
             </div>
 
-        </form>
-
-        <mat-card-actions>
             <div fxLayout="row" fxLayoutGap="10px">
                 <div fxFlex>
-                    <button mat-raised-button color="primary">
+                    <button mat-raised-button color="primary" type="submit">
                         <mat-icon>save</mat-icon> Salvar
                     </button>
                 </div>
             </div>
-        </mat-card-actions>
+        </form>
 
     </mat-card>
 </div>

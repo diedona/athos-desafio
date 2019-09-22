@@ -10,6 +10,8 @@ import { UsuarioComponent } from './usuarios/usuario/usuario.component';
 import { UsuarioListComponent } from './usuarios/usuario-list/usuario-list.component';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { UsuarioEditorComponent } from './usuarios/usuario-editor/usuario-editor.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -24,6 +26,7 @@ import { UsuarioEditorComponent } from './usuarios/usuario-editor/usuario-editor
     CommonModule,
     ApplicationRoutingModule,
     MaterialModule,
+    SharedModule,
     FlexLayoutModule,
     LayoutModule
   ]
