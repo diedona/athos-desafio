@@ -33,9 +33,9 @@ namespace DDonah.AthosDesafio.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
+            ConfigureCors(services);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-            ConfigureCors(services);
             ConfigureDb(services);
             ConfigureScopedServices(services);
             ConfigureAutoMapper(services);
