@@ -46,6 +46,11 @@ namespace DDonah.AthosDesafio.WebApi.Mappings
         private void CreateMapMensagem()
         {
             CreateMap<Mensagem, MensagemViewModel>()
+                .ForMember(dest => dest.AssuntoTipo, opt =>
+                {
+                    opt.Condition(x => x.Assunto != null);
+                    opt.MapFrom(x => x.Assunto.Tipo);
+                })
                 .ForMember(dest => dest.UsuarioEmissorNome, opt =>
                 {
                     opt.Condition(x => x.UsuarioEmissor != null);

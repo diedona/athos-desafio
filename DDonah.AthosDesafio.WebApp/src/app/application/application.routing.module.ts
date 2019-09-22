@@ -8,6 +8,8 @@ import { UsuarioEditorComponent } from './usuarios/usuario-editor/usuario-editor
 import { CondominioComponent } from './condominios/condominio/condominio.component';
 import { CondominioListComponent } from './condominios/condominio-list/condominio-list.component';
 import { CondominioEditorComponent } from './condominios/condominio-editor/condominio-editor.component';
+import { MensagemComponent } from './mensagens/mensagem/mensagem.component';
+import { MensagemListComponent } from './mensagens/mensagem-list/mensagem-list.component';
 
 
 const routes: Routes = [
@@ -29,7 +31,11 @@ const routes: Routes = [
           { path: 'edit/:id', component: CondominioEditorComponent }
         ]
       },
-      { path: 'mensagens', component: HomeComponent }
+      {
+        path: 'mensagens', component: MensagemComponent, children: [
+          { path: '', component: MensagemListComponent }
+        ]
+      }
     ]
   },
 ];

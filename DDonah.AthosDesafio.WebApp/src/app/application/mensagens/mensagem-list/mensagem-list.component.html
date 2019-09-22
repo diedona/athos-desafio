@@ -1,0 +1,51 @@
+<div fxLayout="row wrap" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <div fxFlex>
+        Listagem de Mensagens
+    </div>
+    <div fxFlex class="text-right">
+        <button mat-raised-button color="primary" (click)="onClickCreateNew()">
+            <mat-icon>add</mat-icon> Criar nova
+        </button>
+    </div>
+</div>
+
+
+<div fxLayout="row wrap" class="m-t" fxLayoutGap="10px">
+    <div fxFlex="">
+        <table mat-table [dataSource]="mensagemDs" class="mat-elevation-z8 full-width">
+
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> Id </th>
+                <td mat-cell style="width: 10%" *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="usuarioEmissorId">
+                <th mat-header-cell *matHeaderCellDef> Usuário Emissor </th>
+                <td mat-cell style="width: 25%" *matCellDef="let element"> {{element.usuarioEmissorNome}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="entidadeResponsavelNome">
+                <th mat-header-cell *matHeaderCellDef> Responsável </th>
+                <td mat-cell style="width: 25%" *matCellDef="let element"> {{element.entidadeResponsavelNome}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="assuntoId">
+                <th mat-header-cell *matHeaderCellDef> Assunto </th>
+                <td mat-cell *matCellDef="let element"> {{element.assuntoTipo}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell style="width: 15%" *matCellDef="let element">
+                    <button mat-raised-button class="m-r" (click)="onClickEdit(element)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+    </div>
+</div>

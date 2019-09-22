@@ -15,6 +15,7 @@ namespace DDonah.AthosDesafio.WebApi.ViewModel
         public string Texto { get; set; }
         public DateTime DateCreated { get; set; }
 
+        public string AssuntoTipo { get; set; }
         public string UsuarioEmissorNome { get; set; }
         public string UsuarioResponsavelNome { get; set; }
         public string AdministradoraResponsavelNome { get; set; }
