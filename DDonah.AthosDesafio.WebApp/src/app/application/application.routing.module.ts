@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { ApplicationComponent } from './application.component';
 import { UsuarioComponent } from './usuarios/usuario/usuario.component';
 import { UsuarioListComponent } from './usuarios/usuario-list/usuario-list.component';
+import { UsuarioEditorComponent } from './usuarios/usuario-editor/usuario-editor.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,9 @@ const routes: Routes = [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
       { path: 'usuarios', component: UsuarioComponent, children: [
-        {path: '', component: UsuarioListComponent }
+        {path: '', component: UsuarioListComponent },
+        {path: 'create', component: UsuarioEditorComponent },
+        {path: 'edit/:id', component: UsuarioEditorComponent }
       ] },
       { path: 'condominios', component: HomeComponent },
       { path: 'mensagens', component: HomeComponent }

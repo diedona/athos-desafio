@@ -4,6 +4,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuario-list',
@@ -17,6 +18,7 @@ export class UsuarioListComponent implements OnInit, OnDestroy {
   takeSubject = new Subject<boolean>();
 
   constructor(
+    private router: Router,
     private usuarioService: UsuarioService
   ) { }
 
@@ -31,6 +33,14 @@ export class UsuarioListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.takeSubject.next(true);
     this.takeSubject.unsubscribe();
+  }
+
+  onClickCreateNew(): void {
+    this.router.navigate(['app/usuarios/create']);
+  }
+
+  onClickEdit(data: any): void {
+    this.router.navigate([`app/usuarios/edit/${data.id}`]);
   }
 
 }

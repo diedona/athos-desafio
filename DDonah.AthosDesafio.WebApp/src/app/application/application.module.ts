@@ -9,6 +9,7 @@ import { LayoutModule } from '../layout/layout.module';
 import { UsuarioComponent } from './usuarios/usuario/usuario.component';
 import { UsuarioListComponent } from './usuarios/usuario-list/usuario-list.component';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { UsuarioEditorComponent } from './usuarios/usuario-editor/usuario-editor.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     ApplicationComponent, 
     HomeComponent, 
     UsuarioComponent,
-    UsuarioListComponent
+    UsuarioListComponent,
+    UsuarioEditorComponent
   ],
   imports: [
     CommonModule,
