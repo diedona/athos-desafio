@@ -65,8 +65,9 @@ namespace DDonah.AthosDesafio.WebApi
             {
                 builder.AllowAnyOrigin()
                        .AllowAnyMethod()
-                       .AllowAnyHeader();
-            }));
+                       .AllowAnyHeader()
+                       .AllowCredentials();
+        }));
         }
 
         private void ConfigureDb(IServiceCollection services)
