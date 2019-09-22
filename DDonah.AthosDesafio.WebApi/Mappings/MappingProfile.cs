@@ -1,14 +1,10 @@
 ﻿using AutoMapper;
 using DDonah.AthosDesafio.Domain;
 using DDonah.AthosDesafio.WebApi.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DDonah.AthosDesafio.WebApi.Mappings
 {
-    public class MappingProfile: Profile
+    public class MappingProfile : Profile
     {
         public MappingProfile()
         {
@@ -32,7 +28,11 @@ namespace DDonah.AthosDesafio.WebApi.Mappings
         private void CreateMapUsuario()
         {
             CreateMap<Usuario, UsuarioViewModel>()
-                .ForMember(dest => dest.CondominioNome, opt => opt.MapFrom(x => x.CondominioNavigation.Nome));
+                .ForMember(dest => dest.CondominioNome, opt =>
+                {
+                    opt.Condition(x => x.CondominioNavigation != null);
+                    opt.MapFrom(x => x.CondominioNavigation.Nome);
+                });
 
             CreateMap<UsuarioViewModel, Usuario>();
         }

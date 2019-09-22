@@ -15,4 +15,20 @@ export class CondominioService {
   getAll(): Observable<Array<any>> {
     return this.http.get<Array<any>>(`${environment.apiUrl}/condominio`);
   }
+
+  getById(id: number): Observable<any> {
+    return this.http.get<any>(`${environment.apiUrl}/condominio/${id}`);
+  }
+
+  save(condominio: any): Observable<void> {
+    return this.http.post<any>(`${environment.apiUrl}/condominio/`, condominio);
+  }
+
+  update(condominio: any): Observable<void> {
+    return this.http.put<any>(`${environment.apiUrl}/condominio/`, condominio);
+  }
+
+  delete(id: number): Observable<void> {
+    return this.http.delete<any>(`${environment.apiUrl}/condominio/${id}`);
+  }
 }

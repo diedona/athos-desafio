@@ -7,7 +7,7 @@ namespace DDonah.AthosDesafio.WebApi.ViewModel
 {
     public class CondominioViewModel
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string Nome { get; set; }
         public int AdministradoraId { get; set; }
         public int? ResponsavelId { get; set; }

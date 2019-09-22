@@ -7,6 +7,7 @@ import { UsuarioListComponent } from './usuarios/usuario-list/usuario-list.compo
 import { UsuarioEditorComponent } from './usuarios/usuario-editor/usuario-editor.component';
 import { CondominioComponent } from './condominios/condominio/condominio.component';
 import { CondominioListComponent } from './condominios/condominio-list/condominio-list.component';
+import { CondominioEditorComponent } from './condominios/condominio-editor/condominio-editor.component';
 
 
 const routes: Routes = [
@@ -23,7 +24,9 @@ const routes: Routes = [
       },
       {
         path: 'condominios', component: CondominioComponent, children: [
-          { path: '', component: CondominioListComponent }
+          { path: '', component: CondominioListComponent },
+          { path: 'create', component: CondominioEditorComponent },
+          { path: 'edit/:id', component: CondominioEditorComponent }
         ]
       },
       { path: 'mensagens', component: HomeComponent }

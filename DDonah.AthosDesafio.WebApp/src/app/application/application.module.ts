@@ -13,6 +13,7 @@ import { UsuarioEditorComponent } from './usuarios/usuario-editor/usuario-editor
 import { SharedModule } from '../shared/shared.module';
 import { CondominioComponent } from './condominios/condominio/condominio.component';
 import { CondominioListComponent } from './condominios/condominio-list/condominio-list.component';
+import { CondominioEditorComponent } from './condominios/condominio-editor/condominio-editor.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { CondominioListComponent } from './condominios/condominio-list/condomini
     UsuarioListComponent,
     UsuarioEditorComponent,
     CondominioComponent,
-    CondominioListComponent
+    CondominioListComponent,
+    CondominioEditorComponent
   ],
   imports: [
     CommonModule,

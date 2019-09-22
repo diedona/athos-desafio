@@ -31,6 +31,20 @@ export class CondominioListComponent implements OnInit, OnDestroy {
     this.takeSubject.unsubscribe();
   }
 
+  onClickCreateNew(): void {
+    this.router.navigate(['app/condominios/create']);
+  }
+
+  onClickEdit(data: any): void {
+    this.router.navigate([`app/condominios/edit/${data.id}`]);
+  }
+
+  onClickConfirmDelete(condominio: any): void {
+    if (confirm(`Deseja realmente deletar ${condominio.nome}?`)) {
+      // 
+    }
+  }
+
   //
   // PRIVATES
   //

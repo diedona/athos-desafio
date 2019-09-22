@@ -3,6 +3,7 @@ using DDonah.AthosDesafio.Infra.Generated;
 using DDonah.AthosDesafio.Services.Base;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DDonah.AthosDesafio.Services
@@ -10,6 +11,7 @@ namespace DDonah.AthosDesafio.Services
     public class UsuarioService : BaseService<Usuario>, IUsuarioService
     {
         private readonly string[] usuarioTipos = new string[] { "MORADOR", "SINDICO", "ADMINISTRADOR", "ZELADOR" };
+        private readonly string[] usuarioTipoResponsaveis = new string[] { "SINDICO", "ZELADOR" };
 
         public UsuarioService(AthosDesafioContext db) : base(db) { }
 
@@ -43,6 +45,13 @@ namespace DDonah.AthosDesafio.Services
             }
 
             base.Delete(id);
+        }
+
+        public IEnumerable<Usuario> GetResponsavel()
+        {
+            return _db.Usuario
+                .Where(x => this.usuarioTipoResponsaveis.Contains(x.Tipo))
+                .ToList();
         }
 
         public string[] GetTiposDeUsuario()
