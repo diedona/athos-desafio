@@ -14,9 +14,9 @@
     <div fxFlex="">
         <table mat-table [dataSource]="mensagemDs" class="mat-elevation-z8 full-width">
 
-            <ng-container matColumnDef="id">
-                <th mat-header-cell *matHeaderCellDef> Id </th>
-                <td mat-cell style="width: 10%" *matCellDef="let element"> {{element.id}} </td>
+            <ng-container matColumnDef="dateCreated">
+                <th mat-header-cell *matHeaderCellDef> Data Envio</th>
+                <td mat-cell style="width: 10%" *matCellDef="let element"> {{element.dateCreated | date:'dd/MM/yyyy HH:mm'}} </td>
             </ng-container>
 
             <ng-container matColumnDef="usuarioEmissorId">
@@ -36,7 +36,7 @@
 
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef></th>
-                <td mat-cell style="width: 15%" *matCellDef="let element">
+                <td mat-cell style="width: 10%" *matCellDef="let element">
                     <button mat-raised-button class="m-r" (click)="onClickDetails(element)">
                         <mat-icon>details</mat-icon>
                     </button>

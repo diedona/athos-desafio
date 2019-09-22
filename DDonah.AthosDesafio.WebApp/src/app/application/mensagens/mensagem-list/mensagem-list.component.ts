@@ -13,7 +13,7 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class MensagemListComponent implements OnInit, OnDestroy {
 
-  displayedColumns = ['id', 'usuarioEmissorId', 'entidadeResponsavelNome', 'assuntoId', 'actions'];
+  displayedColumns = ['dateCreated', 'usuarioEmissorId', 'entidadeResponsavelNome', 'assuntoId', 'actions'];
   mensagemDs = new MatTableDataSource<any>();
   takeSubject = new Subject<boolean>();
 
