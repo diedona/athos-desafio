@@ -17,12 +17,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    console.log(this.administradoraService);
-    this.administradoraService.getAll()
-      .pipe(takeUntil(this.subjectTake))
-      .subscribe(data => {
-        console.log(data);
-      });
   }
 
   ngOnDestroy() {

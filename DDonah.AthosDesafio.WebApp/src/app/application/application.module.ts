@@ -10,8 +10,9 @@ import { UsuarioComponent } from './usuarios/usuario/usuario.component';
 import { UsuarioListComponent } from './usuarios/usuario-list/usuario-list.component';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { UsuarioEditorComponent } from './usuarios/usuario-editor/usuario-editor.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { CondominioComponent } from './condominios/condominio/condominio.component';
+import { CondominioListComponent } from './condominios/condominio-list/condominio-list.component';
 
 
 @NgModule({
@@ -20,7 +21,9 @@ import { SharedModule } from '../shared/shared.module';
     HomeComponent, 
     UsuarioComponent,
     UsuarioListComponent,
-    UsuarioEditorComponent
+    UsuarioEditorComponent,
+    CondominioComponent,
+    CondominioListComponent
   ],
   imports: [
     CommonModule,
