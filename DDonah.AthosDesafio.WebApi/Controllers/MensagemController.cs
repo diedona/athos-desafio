@@ -56,7 +56,7 @@ namespace DDonah.AthosDesafio.WebApi.Controllers
             try
             {
                 _mensagemService.Save(model);
-                viewModel = _mapper.Map<MensagemViewModel>(model);
+                viewModel = _mapper.Map<MensagemViewModel>(_mensagemService.Get(viewModel.Id.Value));
                 return Ok(viewModel);
             }
             catch (Exception ex)
