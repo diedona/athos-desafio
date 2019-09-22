@@ -19,6 +19,7 @@ namespace DDonah.AthosDesafio.Infra.Generated
         public virtual DbSet<Administradora> Administradora { get; set; }
         public virtual DbSet<Assunto> Assunto { get; set; }
         public virtual DbSet<Condominio> Condominio { get; set; }
+        public virtual DbSet<Mensagem> Mensagem { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -65,6 +66,38 @@ namespace DDonah.AthosDesafio.Infra.Generated
                     .WithMany(p => p.Condominio)
                     .HasForeignKey(d => d.ResponsavelId)
                     .HasConstraintName("FK_Condominio_Usuario");
+            });
+
+            modelBuilder.Entity<Mensagem>(entity =>
+            {
+                entity.Property(e => e.DateCreated).HasColumnType("datetime");
+
+                entity.Property(e => e.Texto)
+                    .IsRequired()
+                    .HasMaxLength(1800)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.AdministradoraResponsavel)
+                    .WithMany(p => p.Mensagem)
+                    .HasForeignKey(d => d.AdministradoraResponsavelId)
+                    .HasConstraintName("FK_Mensagem_Administradora");
+
+                entity.HasOne(d => d.Assunto)
+                    .WithMany(p => p.Mensagem)
+                    .HasForeignKey(d => d.AssuntoId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Mensagem_Assunto");
+
+                entity.HasOne(d => d.UsuarioEmissor)
+                    .WithMany(p => p.MensagemUsuarioEmissor)
+                    .HasForeignKey(d => d.UsuarioEmissorId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Mensagem_Usuario1");
+
+                entity.HasOne(d => d.UsuarioResponsavel)
+                    .WithMany(p => p.MensagemUsuarioResponsavel)
+                    .HasForeignKey(d => d.UsuarioResponsavelId)
+                    .HasConstraintName("FK_Mensagem_Usuario");
             });
 
             modelBuilder.Entity<Usuario>(entity =>

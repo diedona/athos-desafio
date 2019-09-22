@@ -12,6 +12,7 @@ namespace DDonah.AthosDesafio.WebApi.Mappings
             CreateMapCondominio();
             CreateMapUsuario();
             CreateMapAssunto();
+            CreateMapMensagem();
         }
 
         private void CreateMapCondominio()
@@ -40,6 +41,28 @@ namespace DDonah.AthosDesafio.WebApi.Mappings
         private void CreateMapAssunto()
         {
             CreateMap<Assunto, AssuntoViewModel>().ReverseMap();
+        }
+
+        private void CreateMapMensagem()
+        {
+            CreateMap<Mensagem, MensagemViewModel>()
+                .ForMember(dest => dest.UsuarioEmissorNome, opt =>
+                {
+                    opt.Condition(x => x.UsuarioEmissor != null);
+                    opt.MapFrom(x => x.UsuarioEmissor.Nome);
+                })
+                .ForMember(dest => dest.AdministradoraResponsavelNome, opt =>
+                {
+                    opt.Condition(x => x.AdministradoraResponsavelId.HasValue);
+                    opt.MapFrom(x => x.AdministradoraResponsavel.Nome);
+                })
+                .ForMember(dest => dest.UsuarioResponsavelNome, opt =>
+                {
+                    opt.Condition(x => x.UsuarioResponsavelId.HasValue);
+                    opt.MapFrom(x => x.UsuarioResponsavel.Nome);
+                });
+
+            CreateMap<UsuarioViewModel, Usuario>();
         }
     }
 }
