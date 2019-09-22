@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-usuario-editor',
@@ -9,7 +10,8 @@ import { Router } from '@angular/router';
 export class UsuarioEditorComponent implements OnInit {
 
   constructor(
-    private router: Router
+    private router: Router,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
