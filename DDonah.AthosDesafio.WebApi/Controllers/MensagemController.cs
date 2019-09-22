@@ -31,6 +31,15 @@ namespace DDonah.AthosDesafio.WebApi.Controllers
         }
 
         [HttpGet]
+        [Route("{id}")]
+        public IActionResult Get(int id)
+        {
+            var model = _mensagemService.Get(id);
+            var viewModel = _mapper.Map<MensagemViewModel>(model);
+            return Ok(viewModel);
+        }
+
+        [HttpGet]
         [Route("assunto")]
         public IActionResult GetAssuntos()
         {

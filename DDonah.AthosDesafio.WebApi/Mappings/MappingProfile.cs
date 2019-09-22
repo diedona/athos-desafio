@@ -67,7 +67,7 @@ namespace DDonah.AthosDesafio.WebApi.Mappings
                     opt.MapFrom(x => x.UsuarioResponsavel.Nome);
                 });
 
-            CreateMap<UsuarioViewModel, Usuario>();
+            CreateMap<MensagemViewModel, Mensagem>();
         }
     }
 }

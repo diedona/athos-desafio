@@ -16,6 +16,7 @@ import { CondominioListComponent } from './condominios/condominio-list/condomini
 import { CondominioEditorComponent } from './condominios/condominio-editor/condominio-editor.component';
 import { MensagemComponent } from './mensagens/mensagem/mensagem.component';
 import { MensagemListComponent } from './mensagens/mensagem-list/mensagem-list.component';
+import { MensagemEditorComponent } from './mensagens/mensagem-editor/mensagem-editor.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { MensagemListComponent } from './mensagens/mensagem-list/mensagem-list.c
     CondominioListComponent,
     CondominioEditorComponent,
     MensagemComponent,
-    MensagemListComponent
+    MensagemListComponent,
+    MensagemEditorComponent
   ],
   imports: [
     CommonModule,

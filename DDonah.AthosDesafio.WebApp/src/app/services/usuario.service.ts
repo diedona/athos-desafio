@@ -24,6 +24,10 @@ export class UsuarioService {
     return this.http.get<Array<any>>(`${environment.apiUrl}/usuario/responsavel`);
   }
 
+  getMoradores(): Observable<Array<any>> {
+    return this.http.get<Array<any>>(`${environment.apiUrl}/usuario/morador`);
+  }
+
   save(usuario: any): Observable<void> {
     return this.http.post<void>(`${environment.apiUrl}/usuario/`, usuario);
   }

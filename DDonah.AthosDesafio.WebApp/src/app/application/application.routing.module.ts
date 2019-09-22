@@ -10,6 +10,7 @@ import { CondominioListComponent } from './condominios/condominio-list/condomini
 import { CondominioEditorComponent } from './condominios/condominio-editor/condominio-editor.component';
 import { MensagemComponent } from './mensagens/mensagem/mensagem.component';
 import { MensagemListComponent } from './mensagens/mensagem-list/mensagem-list.component';
+import { MensagemEditorComponent } from './mensagens/mensagem-editor/mensagem-editor.component';
 
 
 const routes: Routes = [
@@ -33,7 +34,9 @@ const routes: Routes = [
       },
       {
         path: 'mensagens', component: MensagemComponent, children: [
-          { path: '', component: MensagemListComponent }
+          { path: '', component: MensagemListComponent },
+          { path: 'create', component: MensagemEditorComponent },
+          { path: 'details/:id', component: MensagemEditorComponent }
         ]
       }
     ]

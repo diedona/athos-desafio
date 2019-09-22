@@ -38,6 +38,15 @@ namespace DDonah.AthosDesafio.WebApi.Controllers
         }
 
         [HttpGet]
+        [Route("morador")]
+        public IActionResult GetMorador()
+        {
+            var responsaveisModel = _usuarioService.GetMorador();
+            var viewModel = _mapper.Map<IEnumerable<UsuarioViewModel>>(responsaveisModel);
+            return Ok(viewModel);
+        }
+
+        [HttpGet]
         [Route("{id}")]
         public IActionResult Get(int id)
         {

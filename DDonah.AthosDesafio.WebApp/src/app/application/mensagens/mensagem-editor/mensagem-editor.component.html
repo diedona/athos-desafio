@@ -1,0 +1,96 @@
+<div fxLayout="row wrap" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <div fxFlex>
+        <button mat-raised-button (click)="onClickGoBack()">
+            <mat-icon>arrow_left</mat-icon> Voltar
+        </button>
+    </div>
+</div>
+
+<div fxLayout="row" fxLayoutGap="10px" class="m-t-lg">
+    <mat-card class="full-width">
+
+        <mat-card-title>
+            Mensagem
+        </mat-card-title>
+
+        <form class="m-t" [formGroup]="frmMensagem" (submit)="onFormSubmit()">
+
+            <div fxLayout="row" fxLayoutGap="10px grid">
+                <div fxFlex="10">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Id</mat-label>
+                        <input matInput formControlName="id">
+                    </mat-form-field>
+                </div>
+                <div fxFlex="30">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Assunto</mat-label>
+                        <mat-select formControlName="assuntoId">
+                            <mat-option value="">
+                                Selecione
+                            </mat-option>
+                            <mat-option *ngFor="let assunto of assuntos" [value]="assunto.id">
+                                {{assunto.tipo}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="10px grid">
+                <div fxFlex="40">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Emissor</mat-label>
+                        <mat-select formControlName="usuarioEmissorId">
+                            <mat-option value="">
+                                Selecione
+                            </mat-option>
+                            <mat-option *ngFor="let usu of usuarios" [value]="usu.id">
+                                {{usu.nome}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="10px grid" *ngIf="frmMensagem.get('id').value">
+                <div fxFlex="40">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Responsável</mat-label>
+                        <input matInput formControlName="entidadeResponsavelNome">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="10px grid">
+                <div fxFlex="40">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Texto</mat-label>
+                        <textarea matInput formControlName="texto"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="10px grid" *ngIf="frmMensagem.get('id').value">
+                <div fxFlex="20">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Data Envio</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="dateCreated">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="10px">
+                <div fxFlex>
+                    <button mat-raised-button color="primary" type="submit" *ngIf="!frmMensagem.get('id').value">
+                        <mat-icon>save</mat-icon> Salvar
+                    </button>
+                </div>
+            </div>
+
+        </form>
+
+    </mat-card>
+</div>

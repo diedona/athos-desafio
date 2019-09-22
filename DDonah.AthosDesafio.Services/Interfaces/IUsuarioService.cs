@@ -8,5 +8,6 @@ namespace DDonah.AthosDesafio.Services
     {
         string[] GetTiposDeUsuario();
         IEnumerable<Usuario> GetResponsavel();
+        IEnumerable<Usuario> GetMorador();
     }
 }

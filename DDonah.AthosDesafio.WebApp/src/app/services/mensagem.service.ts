@@ -16,11 +16,15 @@ export class MensagemService {
     return this.http.get<Array<any>>(`${environment.apiUrl}/mensagem`);
   }
 
-  getByiId(id: number): Observable<any> {
+  getAssuntos(): Observable<Array<any>> {
+    return this.http.get<Array<any>>(`${environment.apiUrl}/mensagem/assunto`);
+  }
+
+  getById(id: number): Observable<any> {
     return this.http.get<Array<any>>(`${environment.apiUrl}/mensagem/${id}`);
   }
 
-  save(mensagem: any): Observable<void> {
-    return this.http.post<void>(`${environment.apiUrl}/mensagem/`, mensagem);
+  save(mensagem: any): Observable<any> {
+    return this.http.post<any>(`${environment.apiUrl}/mensagem/`, mensagem);
   }
 }

@@ -63,6 +63,14 @@ namespace DDonah.AthosDesafio.Services
                 .ToList();
         }
 
+        public IEnumerable<Usuario> GetMorador()
+        {
+            return _db.Usuario
+                .Where(x => x.Tipo.Equals("MORADOR"))
+                .OrderBy(x => x.Nome)
+                .ToList();
+        }
+
         public string[] GetTiposDeUsuario()
         {
             return this.usuarioTipos;

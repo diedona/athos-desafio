@@ -32,6 +32,14 @@ export class MensagemListComponent implements OnInit, OnDestroy {
     this.takeSubject.unsubscribe();
   }
 
+  onClickCreateNew(): void {
+    this.router.navigate(['app/mensagens/create']);
+  }
+
+  onClickDetails(data: any): void {
+    this.router.navigate([`app/mensagens/details/${data.id}`]);
+  }
+
   //
   // PRIVATES
   //
