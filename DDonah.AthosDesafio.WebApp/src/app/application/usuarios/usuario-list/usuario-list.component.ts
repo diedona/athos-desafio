@@ -6,6 +6,7 @@ import { takeUntil } from 'rxjs/operators';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+import { MessageService } from 'src/app/utils/message.service';
 
 @Component({
   selector: 'app-usuario-list',
@@ -14,14 +15,14 @@ import { MatSnackBar } from '@angular/material';
 })
 export class UsuarioListComponent implements OnInit, OnDestroy {
 
-  displayedColumns = ['id', 'nome', 'email', 'actions'];
+  displayedColumns = ['id', 'nome', 'email', 'condominioId', 'actions'];
   usuariosDs = new MatTableDataSource<any>();
   takeSubject = new Subject<boolean>();
 
   constructor(
     private router: Router,
     private usuarioService: UsuarioService,
-    private snackBar: MatSnackBar
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
@@ -65,7 +66,7 @@ export class UsuarioListComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.getUsuarios();
       }, err => {
-        this.snackBar.open(err.error, 'fechar', {panelClass: 'danger-snackbar'});
+        this.messageService.error(err);
       })
   }
 }

@@ -42,6 +42,17 @@ namespace DDonah.AthosDesafio.Services
             base.Update(entity);
         }
 
+        public override void Delete(int id)
+        {
+            // CHECAR SE TEM ALGUM USUARIO MORANDO NELE
+            if (_db.Usuario.Any(x => x.CondominioId == id))
+            {
+                throw new InvalidOperationException("Este condomínio pois moradores e não pode ser excluído!");
+            }
+
+            base.Delete(id);
+        }
+
         private void checkResponsavelTipoThrowException(Condominio entity)
         {
             if (entity.ResponsavelId.HasValue)

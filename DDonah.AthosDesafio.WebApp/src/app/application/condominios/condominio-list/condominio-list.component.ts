@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { CondominioService } from 'src/app/services/condominio.service';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
+import { MessageService } from 'src/app/utils/message.service';
 
 @Component({
   selector: 'app-condominio-list',
@@ -19,7 +20,7 @@ export class CondominioListComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private condominioService: CondominioService,
-    private snackBar: MatSnackBar
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
@@ -41,7 +42,7 @@ export class CondominioListComponent implements OnInit, OnDestroy {
 
   onClickConfirmDelete(condominio: any): void {
     if (confirm(`Deseja realmente deletar ${condominio.nome}?`)) {
-      // 
+      this.deleteCondominio(condominio);
     }
   }
 
@@ -54,6 +55,16 @@ export class CondominioListComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.takeSubject))
       .subscribe(data => {
         this.condominioDs.data = data;
+      })
+  }
+
+  deleteCondominio(condominio: any): void {
+    this.condominioService.delete(condominio.id)
+      .pipe(takeUntil(this.takeSubject))
+      .subscribe(() => {
+        this.getCondominios();
+      }, err => {
+        this.messageService.error(err);
       })
   }
 

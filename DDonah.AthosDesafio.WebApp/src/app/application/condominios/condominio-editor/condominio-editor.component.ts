@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { AdministradoraService } from 'src/app/services/administradora.service';
 import { MatSnackBar } from '@angular/material';
+import { MessageService } from 'src/app/utils/message.service';
 
 @Component({
   selector: 'app-condominio-editor',
@@ -25,10 +26,10 @@ export class CondominioEditorComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private snackBar: MatSnackBar,
     private usuarioService: UsuarioService,
     private condominioService: CondominioService,
-    private administradoraService: AdministradoraService
+    private administradoraService: AdministradoraService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
@@ -66,8 +67,6 @@ export class CondominioEditorComponent implements OnInit, OnDestroy {
   public get modoEditor(): string {
     return (this.modoFormulario);
   }
-
-
 
   //
   // PRIVATES
@@ -123,9 +122,10 @@ export class CondominioEditorComponent implements OnInit, OnDestroy {
     this.condominioService.save(condominio)
       .pipe(takeUntil(this.takeSubject))
       .subscribe(() => {
+        this.messageService.success('Salvo com sucesso!');
         this.onClickGoBack();
       }, err => {
-        this.snackBar.open(err.error, 'x', { panelClass: 'danger-snackbar' });
+        this.messageService.error(err);
       });
   }
 
@@ -133,9 +133,10 @@ export class CondominioEditorComponent implements OnInit, OnDestroy {
     this.condominioService.update(condominio)
       .pipe(takeUntil(this.takeSubject))
       .subscribe(() => {
+        this.messageService.success('Salvo com sucesso!');
         this.onClickGoBack();
       }, err => {
-        this.snackBar.open(err.error, 'fechar', { panelClass: 'danger-snackbar' });
+        this.messageService.error(err);
       });
   }
 

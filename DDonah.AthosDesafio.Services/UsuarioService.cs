@@ -47,10 +47,19 @@ namespace DDonah.AthosDesafio.Services
             base.Delete(id);
         }
 
+        public override IEnumerable<Usuario> GetAll()
+        {
+            return _db.Usuario
+                .Include(x => x.CondominioNavigation)
+                .OrderBy(x => x.Nome)
+                .ToList();
+        }
+
         public IEnumerable<Usuario> GetResponsavel()
         {
             return _db.Usuario
                 .Where(x => this.usuarioTipoResponsaveis.Contains(x.Tipo))
+                .OrderBy(x => x.Nome)
                 .ToList();
         }
 

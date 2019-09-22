@@ -25,7 +25,12 @@
 
             <ng-container matColumnDef="email">
                 <th mat-header-cell *matHeaderCellDef> Email </th>
-                <td mat-cell style="width: 30%" *matCellDef="let element"> {{element.email}} </td>
+                <td mat-cell style="width: 20%" *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="condominioId">
+                <th mat-header-cell *matHeaderCellDef> Condominio </th>
+                <td mat-cell style="width: 20%" *matCellDef="let element"> {{element.condominioNome}} </td>
             </ng-container>
 
             <ng-container matColumnDef="actions">

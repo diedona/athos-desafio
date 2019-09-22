@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { takeUntil } from 'rxjs/operators';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { MessageService } from 'src/app/utils/message.service';
 
 @Component({
   selector: 'app-usuario-editor',
@@ -15,6 +16,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class UsuarioEditorComponent implements OnInit, OnDestroy {
 
   frmUsuario: FormGroup;
+  modoFormulario: string;
   takeSubject = new Subject<boolean>();
   condominios: Array<any>;
 
@@ -23,7 +25,8 @@ export class UsuarioEditorComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private condominioService: CondominioService,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
@@ -59,9 +62,10 @@ export class UsuarioEditorComponent implements OnInit, OnDestroy {
     this.usuarioService.update(usuario)
       .pipe(takeUntil(this.takeSubject))
       .subscribe(() => {
+        this.messageService.success('Salvo com sucesso!');
         this.onClickGoBack();
       }, (err) => {
-        alert('Erro!');
+        this.messageService.error(err);
       })
   }
 
@@ -69,10 +73,15 @@ export class UsuarioEditorComponent implements OnInit, OnDestroy {
     this.usuarioService.save(usuario)
       .pipe(takeUntil(this.takeSubject))
       .subscribe(() => {
+        this.messageService.success('Salvo com sucesso!');
         this.onClickGoBack();
       }, (err) => {
-        alert('Erro!');
+        this.messageService.error(err);
       })
+  }
+
+  public get modoEditor(): string {
+    return (this.modoFormulario);
   }
 
   // 
@@ -84,7 +93,10 @@ export class UsuarioEditorComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.takeSubject))
       .subscribe(x => {
         if (x.id) {
+          this.modoFormulario = "Edição";
           this.loadUsuario(+x.id);
+        } else {
+          this.modoFormulario = "Criação";
         }
       })
   }
