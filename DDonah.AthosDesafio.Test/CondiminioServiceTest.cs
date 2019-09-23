@@ -40,7 +40,7 @@ namespace DDonah.AthosDesafio.Test
             {
                 Nome = "TesteCondominio",
                 AdministradoraId = 1,
-                ResponsavelId = _db.Usuario.FirstOrDefault(x => x.Tipo.Equals("MORADOR")).Id
+                UsuarioSindicoId = _db.Usuario.FirstOrDefault(x => x.Tipo.Equals("MORADOR")).Id
             };
         }
 
@@ -50,7 +50,7 @@ namespace DDonah.AthosDesafio.Test
             {
                 Nome = "TesteCondominioNormal",
                 AdministradoraId = 1,
-                ResponsavelId = _db.Usuario.FirstOrDefault(x => x.Tipo.Equals("SINDICO")).Id
+                UsuarioSindicoId = _db.Usuario.FirstOrDefault(x => x.Tipo.Equals("SINDICO")).Id
             };
         }
     }

@@ -30,9 +30,9 @@ namespace DDonah.AthosDesafio.Test.Db
 
             context.Condominio.AddRange(new Condominio[] { cond1, cond2, cond3 });
 
-            var usu1 = new Usuario() { Nome = "MORADOR", Email = "MORADOR@MORA.COM", Tipo = "MORADOR", CondominioNavigation = cond1 };
-            var usu2 = new Usuario() { Nome = "SINDICO", Email = "SINDICO@MORA.COM", Tipo = "SINDICO", CondominioNavigation = cond2 };
-            var usu3 = new Usuario() { Nome = "ADM", Email = "ADM@MORA.COM", Tipo = "ADM", CondominioNavigation = cond3 };
+            var usu1 = new Usuario() { Nome = "MORADOR", Email = "MORADOR@MORA.COM", Tipo = "MORADOR", Condominio = cond1 };
+            var usu2 = new Usuario() { Nome = "SINDICO", Email = "SINDICO@MORA.COM", Tipo = "SINDICO", Condominio = cond2 };
+            var usu3 = new Usuario() { Nome = "ADM", Email = "ADM@MORA.COM", Tipo = "ADM", Condominio = cond3 };
 
             context.Usuario.AddRange(new Usuario[] { usu1, usu2, usu3 });
 

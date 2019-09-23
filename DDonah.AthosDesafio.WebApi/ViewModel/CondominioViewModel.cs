@@ -10,11 +10,12 @@ namespace DDonah.AthosDesafio.WebApi.ViewModel
         public int? Id { get; set; }
         public string Nome { get; set; }
         public int AdministradoraId { get; set; }
-        public int? ResponsavelId { get; set; }
+        public int? UsuarioSindicoId { get; set; }
+        public int? UsuarioZeladorId { get; set; }
+
 
         public string AdministradoraNome { get; set; }
-        public string ResponsavelNome { get; set; }
-        public string ResponsavelEmail { get; set; }
-        public string ResponsavelCargo { get; set; }
+        public string UsuarioSindicoNome { get; set; }
+        public string UsuarioZeladorNome { get; set; }
     }
 }

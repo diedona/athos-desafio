@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace DDonah.AthosDesafio.Services
 {
@@ -18,7 +19,7 @@ namespace DDonah.AthosDesafio.Services
         public override Usuario Get(int id)
         {
             return _db.Usuario
-                .Include(x => x.CondominioNavigation)
+                .Include(x => x.Condominio)
                 .FirstOrDefault(x => x.Id == id);
         }
 
@@ -38,27 +39,76 @@ namespace DDonah.AthosDesafio.Services
 
         public override void Delete(int id)
         {
-            // CHECAR SE É RESPONSÁVEL DE ALGUM CONDOMINIO
-            if (_db.Condominio.Any(x => x.ResponsavelId.HasValue && x.ResponsavelId.Value == id))
+            StringBuilder sb = new StringBuilder();
+
+            // CHECAR SE É SÍNDICO DE ALGUM CONDOMINIO
+            if (_db.Condominio.Any(x => x.UsuarioSindicoId.HasValue && x.UsuarioSindicoId.Value == id))
             {
-                throw new InvalidOperationException("Este usuário é responsável por um condomínio e não pode ser excluído!");
+                sb.AppendLine("Este usuário é sindico de um condomínio e não pode ser excluído!");
             }
 
-            base.Delete(id);
+            // CHECAR SE É ZELADOR DE ALGUM CONDOMINIO
+            if (_db.Condominio.Any(x => x.UsuarioZeladorId.HasValue && x.UsuarioZeladorId.Value == id))
+            {
+                sb.AppendLine("Este usuário é zelador de um condomínio e não pode ser excluído!");
+            }
+
+            // CHECAR SE É DONO DE ALGUMA MENSAGEM
+            if(_db.Mensagem.Any(x => x.UsuarioEmissorId == id))
+            {
+                sb.AppendLine("Este usuário é emissor de uma mensagem e não pode ser excluído!");
+            }
+
+            // CHECAR SE É RESPONSÁVEL DE ALGUMA MENSAGEM
+            if (_db.Mensagem.Any(x => x.UsuarioResponsavelId.HasValue && x.UsuarioResponsavelId.Value == id))
+            {
+                sb.AppendLine("Este usuário é responsável por uma mensagem e não pode ser excluído!");
+            }
+
+            string error = sb.ToString();
+            if (string.IsNullOrEmpty(error))
+            {
+                base.Delete(id);
+            }
+            else
+            {
+                throw new ArgumentException(error);
+            }
+        }
+
+        public override void Update(Usuario entity)
+        {
+            string dbTipo = _db.Usuario.Where(x => x.Id == entity.Id).Select(x => x.Tipo).FirstOrDefault();
+            if (dbTipo.Equals(entity.Tipo))
+            {
+                base.Update(entity);
+            }
+            else
+            {
+                throw new ArgumentException($"Tentativa de mudar o Tipo do usuário ({dbTipo} => {entity.Tipo}). Operação cancelada.");
+            }
         }
 
         public override IEnumerable<Usuario> GetAll()
         {
             return _db.Usuario
-                .Include(x => x.CondominioNavigation)
+                .Include(x => x.Condominio)
                 .OrderBy(x => x.Nome)
                 .ToList();
         }
 
-        public IEnumerable<Usuario> GetResponsavel()
+        public IEnumerable<Usuario> GetSindico()
         {
             return _db.Usuario
-                .Where(x => this.usuarioTipoResponsaveis.Contains(x.Tipo))
+                .Where(x => x.Tipo.Equals("SINDICO"))
+                .OrderBy(x => x.Nome)
+                .ToList();
+        }
+
+        public IEnumerable<Usuario> GetZelador()
+        {
+            return _db.Usuario
+                .Where(x => x.Tipo.Equals("ZELADOR"))
                 .OrderBy(x => x.Nome)
                 .ToList();
         }

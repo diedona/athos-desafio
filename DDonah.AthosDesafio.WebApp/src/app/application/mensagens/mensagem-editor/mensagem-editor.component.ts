@@ -6,6 +6,7 @@ import { MensagemService } from 'src/app/services/mensagem.service';
 import { takeUntil } from 'rxjs/operators';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { MessageService } from 'src/app/utils/message.service';
+import { CondominioService } from 'src/app/services/condominio.service';
 
 @Component({
   selector: 'app-mensagem-editor',
@@ -17,6 +18,7 @@ export class MensagemEditorComponent implements OnInit, OnDestroy {
   frmMensagem: FormGroup;
   usuarios: Array<any>;
   assuntos: Array<any>;
+  condominios: Array<any>;
   takeSubject = new Subject<boolean>();
 
   constructor(
@@ -25,6 +27,7 @@ export class MensagemEditorComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private mensagemService: MensagemService,
     private usuarioService: UsuarioService,
+    private condominioService: CondominioService,
     private messageService: MessageService
   ) { }
 
@@ -33,6 +36,7 @@ export class MensagemEditorComponent implements OnInit, OnDestroy {
     this.getCheckParams();
     this.carregarAssuntos();
     this.carregarUsuarios();
+    this.carregarCondominios();
   }
 
   ngOnDestroy() {
@@ -57,6 +61,29 @@ export class MensagemEditorComponent implements OnInit, OnDestroy {
 
     this.save(mensagem);
   }
+
+  //
+
+  public get getCondominioEmissor(): string {
+
+    const usuarioEmissorId = this.frmMensagem.get('usuarioEmissorId').value;
+    if (!usuarioEmissorId) {
+      return '';
+    }
+
+    const usuario = this.usuarios.find(x => x.id === usuarioEmissorId);
+    if (!usuario) {
+      return '';
+    }
+
+    const condominio = this.condominios.find(x => x.id === usuario.condominioId);
+    if (!condominio) {
+      return '';
+    } else {
+      return condominio.nome;
+    }
+  }
+
 
   //
   // PRIVATES
@@ -108,6 +135,14 @@ export class MensagemEditorComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.takeSubject))
       .subscribe(usuarios => {
         this.usuarios = usuarios;
+      })
+  }
+
+  private carregarCondominios() {
+    this.condominioService.getAll()
+      .pipe(takeUntil(this.takeSubject))
+      .subscribe(data => {
+        this.condominios = data;
       })
   }
 

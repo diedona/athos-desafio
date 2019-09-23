@@ -17,7 +17,8 @@ namespace DDonah.AthosDesafio.Services
         public override IEnumerable<Condominio> GetAll()
         {
             return _db.Condominio
-                .Include(x => x.Responsavel)
+                .Include(x => x.UsuarioSindico)
+                .Include(x => x.UsuarioZelador)
                 .Include(x => x.Administradora)
                 .ToList();
         }
@@ -25,7 +26,8 @@ namespace DDonah.AthosDesafio.Services
         public override Condominio Get(int id)
         {
             return _db.Condominio
-                .Include(x => x.Responsavel)
+                .Include(x => x.UsuarioSindico)
+                .Include(x => x.UsuarioZelador)
                 .Include(x => x.Administradora)
                 .FirstOrDefault(x => x.Id == id);
         }
@@ -55,13 +57,21 @@ namespace DDonah.AthosDesafio.Services
 
         private void checkResponsavelTipoThrowException(Condominio entity)
         {
-            if (entity.ResponsavelId.HasValue)
+            if(entity.UsuarioSindicoId.HasValue)
             {
-                // Responsável só pode ser (( Zelador / Sindico ))
-                var responsavel = _db.Usuario.Find(entity.ResponsavelId);
-                if (!this.tiposDeResponsavelValidos.Contains(responsavel.Tipo))
+                var usuario = _db.Usuario.Find(entity.UsuarioSindicoId.Value);
+                if(!usuario.Tipo.Equals("SINDICO"))
                 {
-                    throw new ArgumentException("Tipo de responsável inválido");
+                    throw new ArgumentException($"O usuário indicado para síndico é do tipo '{usuario.Tipo}'!");
+                }
+            }
+
+            if (entity.UsuarioZeladorId.HasValue)
+            {
+                var usuario = _db.Usuario.Find(entity.UsuarioZeladorId.Value);
+                if (!usuario.Tipo.Equals("ZELADOR"))
+                {
+                    throw new ArgumentException($"O usuário indicado para zelador é do tipo '{usuario.Tipo}'!");
                 }
             }
         }

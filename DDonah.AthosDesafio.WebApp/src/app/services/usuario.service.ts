@@ -20,8 +20,12 @@ export class UsuarioService {
     return this.http.get<Array<any>>(`${environment.apiUrl}/usuario/${id}`);
   }
 
-  getResponsaveis(): Observable<Array<any>> {
-    return this.http.get<Array<any>>(`${environment.apiUrl}/usuario/responsavel`);
+  getSindicos(): Observable<Array<any>> {
+    return this.http.get<Array<any>>(`${environment.apiUrl}/usuario/sindico`);
+  }
+
+  getZeladores(): Observable<Array<any>> {
+    return this.http.get<Array<any>>(`${environment.apiUrl}/usuario/zelador`);
   }
 
   getMoradores(): Observable<Array<any>> {

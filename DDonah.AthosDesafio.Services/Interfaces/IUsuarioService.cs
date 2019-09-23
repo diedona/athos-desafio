@@ -7,7 +7,8 @@ namespace DDonah.AthosDesafio.Services
     public interface IUsuarioService : IBaseService<Usuario>
     {
         string[] GetTiposDeUsuario();
-        IEnumerable<Usuario> GetResponsavel();
+        IEnumerable<Usuario> GetSindico();
+        IEnumerable<Usuario> GetZelador();
         IEnumerable<Usuario> GetMorador();
     }
 }

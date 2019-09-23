@@ -111,6 +111,7 @@ export class UsuarioEditorComponent implements OnInit, OnDestroy {
 
   fillFormData(usuario: any): void {
     this.frmUsuario.patchValue(usuario);
+    this.frmUsuario.get('tipo').disable();
   }
 
   getCondominios(): void {

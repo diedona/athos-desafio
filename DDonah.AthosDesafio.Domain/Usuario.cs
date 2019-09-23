@@ -7,7 +7,8 @@ namespace DDonah.AthosDesafio.Domain
     {
         public Usuario()
         {
-            Condominio = new HashSet<Condominio>();
+            CondominioUsuarioSindico = new HashSet<Condominio>();
+            CondominioUsuarioZelador = new HashSet<Condominio>();
             MensagemUsuarioEmissor = new HashSet<Mensagem>();
             MensagemUsuarioResponsavel = new HashSet<Mensagem>();
         }
@@ -18,8 +19,9 @@ namespace DDonah.AthosDesafio.Domain
         public int CondominioId { get; set; }
         public string Tipo { get; set; }
 
-        public virtual Condominio CondominioNavigation { get; set; }
-        public virtual ICollection<Condominio> Condominio { get; set; }
+        public virtual Condominio Condominio { get; set; }
+        public virtual ICollection<Condominio> CondominioUsuarioSindico { get; set; }
+        public virtual ICollection<Condominio> CondominioUsuarioZelador { get; set; }
         public virtual ICollection<Mensagem> MensagemUsuarioEmissor { get; set; }
         public virtual ICollection<Mensagem> MensagemUsuarioResponsavel { get; set; }
     }

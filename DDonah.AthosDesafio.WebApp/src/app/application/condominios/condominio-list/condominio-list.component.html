@@ -13,11 +13,6 @@
     <div fxFlex="">
         <table mat-table [dataSource]="condominioDs" class="mat-elevation-z8 full-width">
 
-            <ng-container matColumnDef="id">
-                <th mat-header-cell *matHeaderCellDef> Id </th>
-                <td mat-cell style="width: 10%" *matCellDef="let element"> {{element.id}} </td>
-            </ng-container>
-
             <ng-container matColumnDef="nome">
                 <th mat-header-cell *matHeaderCellDef> Nome </th>
                 <td mat-cell style="width: 25%" *matCellDef="let element"> {{element.nome}} </td>
@@ -28,9 +23,14 @@
                 <td mat-cell style="width: 25%" *matCellDef="let element"> {{element.administradoraNome}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="responsavelId">
-                <th mat-header-cell *matHeaderCellDef> Usuário Responsável </th>
-                <td mat-cell *matCellDef="let element"> {{element.responsavelNome}} </td>
+            <ng-container matColumnDef="usuarioSindicoId">
+                <th mat-header-cell *matHeaderCellDef> Síndico </th>
+                <td mat-cell *matCellDef="let element"> {{element.usuarioSindicoNome}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="usuarioZeladorId">
+                <th mat-header-cell *matHeaderCellDef> Zelador </th>
+                <td mat-cell *matCellDef="let element"> {{element.usuarioZeladorNome}} </td>
             </ng-container>
 
             <ng-container matColumnDef="actions">

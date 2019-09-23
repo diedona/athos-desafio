@@ -18,7 +18,8 @@ export class CondominioEditorComponent implements OnInit, OnDestroy {
 
   frmCondominio: FormGroup;
   modoFormulario: string;
-  usuarios: Array<any>;
+  sindicos: Array<any>;
+  zeladores: Array<any>;
   administradoras: Array<any>;
   takeSubject = new Subject<boolean>();
 
@@ -77,7 +78,8 @@ export class CondominioEditorComponent implements OnInit, OnDestroy {
       id: [{ value: '', disabled: true }, []],
       nome: ['', [Validators.required]],
       administradoraId: ['', [Validators.required]],
-      responsavelId: ['', []]
+      usuarioSindicoId: ['', []],
+      usuarioZeladorId: ['', []]
     });
   }
 
@@ -103,11 +105,17 @@ export class CondominioEditorComponent implements OnInit, OnDestroy {
   }
 
   carregarUsuarios(): void {
-    this.usuarioService.getResponsaveis()
+    this.usuarioService.getSindicos()
       .pipe(takeUntil(this.takeSubject))
       .subscribe(data => {
-        this.usuarios = data;
-      })
+        this.sindicos = data;
+      });
+
+    this.usuarioService.getZeladores()
+      .pipe(takeUntil(this.takeSubject))
+      .subscribe(data => {
+        this.zeladores = data;
+      });
   }
 
   carregarAdministradoras(): void {

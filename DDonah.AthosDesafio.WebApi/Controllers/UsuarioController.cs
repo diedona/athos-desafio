@@ -29,10 +29,19 @@ namespace DDonah.AthosDesafio.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("responsavel")]
-        public IActionResult GetResponsavel()
+        [Route("sindico")]
+        public IActionResult GetSindico()
         {
-            var responsaveisModel = _usuarioService.GetResponsavel();
+            var responsaveisModel = _usuarioService.GetSindico();
+            var viewModel = _mapper.Map<IEnumerable<UsuarioViewModel>>(responsaveisModel);
+            return Ok(viewModel);
+        }
+
+        [HttpGet]
+        [Route("zelador")]
+        public IActionResult GetZelador()
+        {
+            var responsaveisModel = _usuarioService.GetZelador();
             var viewModel = _mapper.Map<IEnumerable<UsuarioViewModel>>(responsaveisModel);
             return Ok(viewModel);
         }

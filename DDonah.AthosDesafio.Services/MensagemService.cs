@@ -42,14 +42,19 @@ namespace DDonah.AthosDesafio.Services
 
             if (assunto.Tipo.Equals("Condominal"))
             {
-                if (condominioDoUsuarioEmissor.ResponsavelId.HasValue)
+                if (condominioDoUsuarioEmissor.UsuarioSindicoId.HasValue)
                 {
                     entity.AdministradoraResponsavelId = null;
-                    entity.UsuarioResponsavelId = condominioDoUsuarioEmissor.ResponsavelId.Value;
+                    entity.UsuarioResponsavelId = condominioDoUsuarioEmissor.UsuarioSindicoId.Value;
+                }
+                else if(condominioDoUsuarioEmissor.UsuarioZeladorId.HasValue)
+                {
+                    entity.AdministradoraResponsavelId = null;
+                    entity.UsuarioResponsavelId = condominioDoUsuarioEmissor.UsuarioZeladorId.Value;
                 }
                 else
                 {
-                    throw new ArgumentException("O condomínio não possui um responsável para receber a mensagem.");
+                    throw new ArgumentException("O condomínio não possui síndico nem zelador para receber a mensagem!");
                 }
             }
             else

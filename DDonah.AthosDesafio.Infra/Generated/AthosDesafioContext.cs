@@ -62,10 +62,15 @@ namespace DDonah.AthosDesafio.Infra.Generated
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Condominio_Administradora");
 
-                entity.HasOne(d => d.Responsavel)
-                    .WithMany(p => p.Condominio)
-                    .HasForeignKey(d => d.ResponsavelId)
+                entity.HasOne(d => d.UsuarioSindico)
+                    .WithMany(p => p.CondominioUsuarioSindico)
+                    .HasForeignKey(d => d.UsuarioSindicoId)
                     .HasConstraintName("FK_Condominio_Usuario");
+
+                entity.HasOne(d => d.UsuarioZelador)
+                    .WithMany(p => p.CondominioUsuarioZelador)
+                    .HasForeignKey(d => d.UsuarioZeladorId)
+                    .HasConstraintName("FK_Condominio_Usuario1");
             });
 
             modelBuilder.Entity<Mensagem>(entity =>
@@ -117,7 +122,7 @@ namespace DDonah.AthosDesafio.Infra.Generated
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CondominioNavigation)
+                entity.HasOne(d => d.Condominio)
                     .WithMany(p => p.Usuario)
                     .HasForeignKey(d => d.CondominioId)
                     .OnDelete(DeleteBehavior.ClientSetNull)

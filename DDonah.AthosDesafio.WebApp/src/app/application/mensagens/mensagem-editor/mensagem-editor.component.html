@@ -51,6 +51,12 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
+                <div fxFlex="40">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Condominio do Emissor</mat-label>
+                        <input matInput disabled [value]="getCondominioEmissor">
+                    </mat-form-field>
+                </div>
             </div>
 
             <div fxLayout="row" fxLayoutGap="10px grid" *ngIf="frmMensagem.get('id').value">
@@ -75,7 +81,8 @@
                 <div fxFlex="20">
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Data Envio</mat-label>
-                        <input matInput disabled [value]="frmMensagem.get('dateCreated').value | date:'dd/MM/yyyy HH:mm'">
+                        <input matInput disabled
+                            [value]="frmMensagem.get('dateCreated').value | date:'dd/MM/yyyy HH:mm'">
                     </mat-form-field>
                 </div>
             </div>

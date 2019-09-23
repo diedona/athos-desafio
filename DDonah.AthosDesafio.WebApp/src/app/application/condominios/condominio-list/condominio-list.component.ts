@@ -13,7 +13,7 @@ import { MessageService } from 'src/app/utils/message.service';
 })
 export class CondominioListComponent implements OnInit, OnDestroy {
 
-  displayedColumns = ['id', 'nome', 'administradoraId', 'responsavelId', 'actions'];
+  displayedColumns = ['nome', 'administradoraId', 'usuarioSindicoId', 'usuarioZeladorId', 'actions'];
   condominioDs = new MatTableDataSource<any>();
   takeSubject = new Subject<boolean>();
 
