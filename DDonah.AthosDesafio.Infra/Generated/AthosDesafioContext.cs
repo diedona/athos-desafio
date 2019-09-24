@@ -119,7 +119,7 @@ namespace DDonah.AthosDesafio.Infra.Generated
 
                 entity.Property(e => e.Tipo)
                     .IsRequired()
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.Condominio)
